@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package todo;
+
+option go_package = "github.com/3bd-dev/go-starter-template/rpc/todo;todo";
+
+// Define the messages for requests and responses
+message CreateRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message CreateResponse {
+  string id = 1;
+}
+
+message UpdateRequest {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message UpdateResponse {
+  bool success = 1;
+}
+
+message Item {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  bool completed = 4;
+}
+
+message ListResponse {
+  repeated Item items = 1;
+}
+
+message ListRequest{
+  string id = 1;
+  string title = 2;
+}
+
+// Define the service
+service Todo {
+  // Create a new todo item
+  rpc Create(CreateRequest) returns (CreateResponse);
+  
+  // Update an existing  item
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  
+  // List all  items
+  rpc List(ListRequest) returns (ListResponse);
+}
