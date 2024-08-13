@@ -1,8 +1,5 @@
 # Define variables
 APP_NAME := go-starter-template
-PROTO_DIR := rpc
-PROTO_FILES := $(PROTO_DIR)/*.proto
-GO_OUT := $(PROTO_DIR)
 
 # Default target
 all: build
@@ -25,12 +22,7 @@ run: build
 # Generate protobuf files
 proto:
 	@echo "Generating protobuf files..."
-	protoc --go_out=$(GO_OUT) --go-grpc_out=$(GO_OUT) $(PROTO_FILES)
-
-# Run tests
-test:
-	@echo "Running tests..."
-	go test ./...
+	protoc -I. --go_out=paths=source_relative:. --go-grpc_out=paths=source_relative:./ rpc/todo/todo.proto
 
 # Format the code
 fmt:
