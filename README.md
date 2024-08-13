@@ -29,13 +29,10 @@ go-starter-template/
 ├── Makefile                        # Makefile for build automation
 ├── go.mod                          # Go module file
 └── go.sum                          # Go module dependencies
+```
 
+## Prerequisites
 
-
-### Prerequisites
-
-- Go 1.18 or later
-- PostgreSQL (if using the PostgreSQL repository)
 - `protoc` (Protocol Buffers compiler)
 
 ### Installation
