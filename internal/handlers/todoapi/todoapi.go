@@ -6,6 +6,7 @@ import (
 
 	"github.com/3bd-dev/go-starter-template/internal/models"
 	"github.com/3bd-dev/go-starter-template/internal/services"
+	"github.com/gorilla/mux"
 )
 
 type api struct {
@@ -40,6 +41,9 @@ func (h *api) Update(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	id := mux.Vars(r)["id"]
+	req.ID = id
 
 	err := h.service.Update(&req)
 	if err != nil {

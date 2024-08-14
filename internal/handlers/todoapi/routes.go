@@ -4,12 +4,14 @@ import (
 	"net/http"
 
 	"github.com/3bd-dev/go-starter-template/internal/services"
+	"github.com/gorilla/mux"
 )
 
 // Routes adds specific routes for this group.
-func Routes(mux *http.ServeMux, svc *services.TodoService) {
+func Routes(router *mux.Router, svc *services.TodoService) {
 	api := newapi(svc)
-	mux.HandleFunc("/todos/create", api.Create)
-	mux.HandleFunc("/todos/update", api.Update)
-	mux.HandleFunc("/todos/list", api.List)
+	todos := router.PathPrefix("/todos").Subrouter()
+	todos.HandleFunc("/", api.List).Methods(http.MethodGet)    // List all todos
+	todos.HandleFunc("/", api.Create).Methods(http.MethodPost) // Create a new todo
+	todos.HandleFunc("/{id}", api.Update).Methods(http.MethodPut)
 }
