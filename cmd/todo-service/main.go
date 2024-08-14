@@ -15,6 +15,7 @@ import (
 	"github.com/3bd-dev/go-starter-template/internal/handlers/todogrpc"
 	"github.com/3bd-dev/go-starter-template/internal/repos/inmemory"
 	"github.com/3bd-dev/go-starter-template/internal/services"
+	"github.com/gorilla/mux"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -37,7 +38,7 @@ func main() {
 	reflection.Register(grpcServer)
 
 	// http server
-	httpmux := http.NewServeMux()
+	httpmux := mux.NewRouter()
 	todoapi.Routes(httpmux, todoService)
 
 	httpserver := &http.Server{
