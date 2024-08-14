@@ -15,17 +15,19 @@ go-starter-template/
 │   └── todo_grpc.pb.go             # Generated Go file for gRPC
 ├── internal/
 │   ├── handlers/
-│   │   ├── http/
-│   │   │   └── todo_handler.go      # HTTP handlers for the Todo service
-│   │   ├── grpc/
-│   │   │   └── todo_handler.go      # gRPC handlers for the Todo service
+│   │   ├── todoapi/
+│   │   │   └── todoapi.go      # HTTP handlers for the Todo service
+│   │   │   └── routes.go       # add RestAPI routes 
+│   │   ├── todogrpc/
+│   │   │   └── todogrpc.go      # gRPC handlers for the Todo service
+│   │   │   └── register.go      # register gRPC server
 │   ├── services/
-│   │   └── todo_service.go         # Business logic for the Todo service
+│   │   └── todo.go         # Business logic for the Todo service
 │   ├── models/
 │   │   └── todo.go                 # Data model for the Todo service
 │   ├── repos/
 │   │   ├── inmemory/
-│   │        └── todo_repository.go   # In-memory repository implementation
+│   │        └── todo.go   # In-memory repository implementation
 ├── Makefile                        # Makefile for build automation
 ├── go.mod                          # Go module file
 └── go.sum                          # Go module dependencies
